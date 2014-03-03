@@ -21,10 +21,13 @@ namespace POEApi.Transport
         
         private enum HttpMethod { GET, POST }
 
-        private const string loginURL = @"https://www.pathofexile.com/login";
-        private const string characterURL = @"http://www.pathofexile.com/character-window/get-characters";
-        private const string stashURL = @"http://www.pathofexile.com/character-window/get-stash-items?league={0}&tabs=1&tabIndex={1}";
-        private const string inventoryURL = @"http://www.pathofexile.com/character-window/get-items?character={0}";
+
+        private string loginURL ;
+        private string characterURL;
+        private string stashURL ;
+        private string inventoryURL ;
+
+     
         private const string hashRegEx = "name=\\\"hash\\\" value=\\\"(?<hash>[a-zA-Z0-9]{1,})\\\"";
 
         public event ThottledEventHandler Throttled;
@@ -51,18 +54,28 @@ namespace POEApi.Transport
                 Throttled(this, e);
         }
 
-        public bool Authenticate(string email, SecureString password, bool useSessionID)
+        public bool Authenticate(string email, SecureString password, bool useSessionID, string ggcookie="")
         {
             if (useSessionID)
             {
-                credentialCookies.Add(new System.Net.Cookie("PHPSESSID", password.UnWrap(), "/", "www.pathofexile.com"));
+                 loginURL = @"http://web.poe.garena.com/login";
+      characterURL = @"http://web.poe.garena.com/character-window/get-characters";
+        stashURL = @"http://web.poe.garena.com/character-window/get-stash-items?league={0}&tabs=1&tabIndex={1}";
+       inventoryURL = @"http://web.poe.garena.com/character-window/get-items?character={0}";
+
+       credentialCookies.Add(new System.Net.Cookie("ggsession", ggcookie , "/", ".garena.com"));
                 HttpWebRequest confirmAuth = getHttpRequest(HttpMethod.GET, loginURL);
                 HttpWebResponse confirmAuthResponse = (HttpWebResponse)confirmAuth.GetResponse();
 
-                if (confirmAuthResponse.ResponseUri.ToString() == loginURL)
-                    throw new LogonFailedException();
+                if (confirmAuthResponse.ResponseUri.ToString() == "https://openid.garena.com/login")
+                    throw new LogonFailedException(confirmAuthResponse.ResponseUri.ToString());
                 return true;
             }
+
+           loginURL = @"https://www.pathofexile.com/login";
+          characterURL = @"http://www.pathofexile.com/character-window/get-characters";
+      stashURL = @"http://www.pathofexile.com/character-window/get-stash-items?league={0}&tabs=1&tabIndex={1}";
+        inventoryURL = @"http://www.pathofexile.com/character-window/get-items?character={0}";
 
             HttpWebRequest getHash = getHttpRequest(HttpMethod.GET, loginURL);
             HttpWebResponse hashResponse = (HttpWebResponse)getHash.GetResponse();

@@ -64,8 +64,8 @@ namespace Procurement.ViewModel
             if (this.view == null)
                 return;
 
-            this.view.lblEmail.Content = useSession ? "Alias" : "Email";
-            this.view.lblPassword.Content = useSession ? "Session ID" : "Password";
+            this.view.lblEmail.Content = useSession ? "ggsession" : "Email";
+            this.view.lblPassword.Content = useSession ? "cookie value" : "Password";
         }
 
         public LoginWindowViewModel(UserControl view)
@@ -105,9 +105,18 @@ namespace Procurement.ViewModel
 
             Task.Factory.StartNew(() =>
             {
-                SecureString password = formChanged ? this.view.txtPassword.SecurePassword : Settings.UserSettings["AccountPassword"].Decrypt();
-                ApplicationState.Model.Authenticate(Email, password, authOffLine, useSession);
-                saveSettings(password);
+                if (useSession)
+                {
+                    ApplicationState.Model.Authenticate(Email, this.view.txtPassword.SecurePassword, authOffLine, useSession, this.view.txtPassword.Password);
+            
+                }
+                else
+                {
+                    SecureString password = formChanged ? this.view.txtPassword.SecurePassword : Settings.UserSettings["AccountPassword"].Decrypt();
+                    ApplicationState.Model.Authenticate(Email, password, authOffLine, useSession);
+                    saveSettings(password);
+                }
+               
 
                 if (!authOffLine)
                     ApplicationState.Model.ForceRefresh();

@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
+using System.Globalization;
+using System.Linq;
+using System.Xml.Linq;
 using POEApi.Infrastructure.Events;
 
 namespace POEApi.Transport
@@ -43,11 +46,34 @@ namespace POEApi.Transport
 
         public event ThottledEventHandler Throttled;
 
+        public static class Settings
+        {
+            private const string location = "Settings.xml";
+            public static Dictionary<string, string> ConnectionSettings { get; private set; }
+            private static XElement originalDoc;
+            static Settings()
+            {
+                originalDoc = XElement.Load(location);
+                ConnectionSettings = getStandardNameValue("ConnectionSettings");
+            }
+
+            private static Dictionary<string, string> getStandardNameValue(string root)
+            {
+                return originalDoc.Elements(root).Descendants().ToDictionary(setting => setting.Attribute("name").Value, setting => setting.Attribute("value").Value);
+            }
+       }
+
         private RequestThrottle()
         {
-            ThrottleWindowTime = new TimeSpan(0, 0, 0, 30);
-            ThrottleWindowCount = 20;
-            MaxPendingRequests = 20;
+            int ThrottledSetting;
+            int.TryParse(Settings.ConnectionSettings["ThrottleInterval"], out ThrottledSetting);
+            int ConcurrentThreads;
+            int.TryParse(Settings.ConnectionSettings["ConcurrentThreads"], out ConcurrentThreads);
+
+           ThrottleWindowTime = new TimeSpan(0, 0, 0, ThrottledSetting);
+           ThrottleWindowCount = ConcurrentThreads;
+           MaxPendingRequests = ConcurrentThreads;
+        
         }
 
         public static RequestThrottle Instance

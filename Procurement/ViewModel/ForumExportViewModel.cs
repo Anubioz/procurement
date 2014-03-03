@@ -130,7 +130,16 @@ namespace Procurement.ViewModel
             StashItems.ForEach(s => s.FixName());
         }
 
-        public void update(int key, bool isChecked)
+         public void update(int key, bool isChecked)
+        {
+            if (isChecked)
+                selected.Add(key);
+            else
+                selected.Remove(key);
+
+        }
+
+         public void fullupdate(int key, bool isChecked)
         {
             if (isChecked)
                 selected.Add(key);
@@ -255,6 +264,8 @@ namespace Procurement.ViewModel
         internal void ToggleAll(bool value)
         {
             stashItems.ForEach(si => si.IsChecked = value);
+            Text = getFinal(selected.SelectMany(sid => ApplicationState.Stash[ApplicationState.CurrentLeague].GetItemsByTab(sid))
+                                                                  .OrderBy(id => id.Y).ThenBy(i => i.X));
         }
     }
 }

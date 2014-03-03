@@ -38,7 +38,7 @@
                             <DataTemplate>
                                     <StackPanel>
                                         <TextBlock Background="Black" Foreground="#FFAB9066" ToolTip="{Binding ., Converter={StaticResource tc}}">
-                                            <CheckBox Tag="{Binding ID, Mode=OneTime}" Checked="checkBox_Checked" Unchecked="checkBox_Checked" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                            <CheckBox Tag="{Binding ID, Mode=OneTime}"  Click="checkBox_Clicked" Checked="checkBox_Checked" Unchecked="checkBox_Checked" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
                                             <Run Text="{Binding Name, Mode=OneTime}" />
                                         </TextBlock>
                                 </StackPanel>

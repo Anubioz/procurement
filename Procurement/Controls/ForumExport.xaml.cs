@@ -12,6 +12,13 @@ namespace Procurement.Controls
             this.DataContext = new ForumExportViewModel();
         }
 
+        void checkBox_Clicked(object sender, RoutedEventArgs e)
+        {
+            ForumExportViewModel vm = this.DataContext as ForumExportViewModel;
+            CheckBox cb = sender as CheckBox;
+         vm.fullupdate(int.Parse(cb.Tag.ToString()), cb.IsChecked.Value);
+        }
+
         void checkBox_Checked(object sender, RoutedEventArgs e)
         {
             ForumExportViewModel vm = this.DataContext as ForumExportViewModel;

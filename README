@@ -1,3 +1,8 @@
 Fork of the https://code.google.com/p/procurement/
 
-Windows executable availible at http://stat.tvaals.net/trade/
+Removed everything that slowed the program down
+
+Time from launch to found item in 200+ tabs: <30s 
+(need to start in offline mode for that)
+
+Get my final version of procurement-mod at http://stat.tvaals.net/trade/procurement.7z

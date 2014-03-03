@@ -96,8 +96,10 @@ namespace Procurement.Utility
                     bitmap.StreamSource = stream;
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.EndInit();
-
-                    imageCache.Add(key, new CroppedBitmap(bitmap, new Int32Rect(0, offset, (int)bitmap.Width, 26)));
+                    BitmapImage bitmapclone = (BitmapImage)bitmap.Clone();
+                    bitmap = null;
+                    stream.Close();
+                    imageCache.Add(key, new CroppedBitmap(bitmapclone, new Int32Rect(0, offset, (int)bitmapclone.Width, 26)));
                 }
             }
             catch (Exception ex)

@@ -13,17 +13,18 @@ namespace Procurement.ViewModel
         public StatusController(RichTextBox statusBox)
         {
             this.statusBox = statusBox;
+            statusBox.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             this.brush = statusBox.Foreground;
         }
 
         public void Ok()
         {
-            CheckAccessAndInvoke(() => displayResult("OK", Brushes.Green));
+            
         }
 
         public void NotOK()
         {
-            CheckAccessAndInvoke(() => displayResult("ER", Brushes.Red));
+       
         }
 
         public void DisplayMessage(string message)
@@ -36,7 +37,7 @@ namespace Procurement.ViewModel
                 text.Text = "\r" + getPaddedString(text.Text);
                 ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
 
-                statusBox.ScrollToEnd();
+              
             });
         }
 
@@ -45,7 +46,7 @@ namespace Procurement.ViewModel
             CheckAccessAndInvoke((Action)delegate()
             {
                 Run text = new Run();
-
+          
                 text.Foreground = Brushes.White;
                 text.Text = "\r\r[";
                 ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
@@ -64,7 +65,7 @@ namespace Procurement.ViewModel
                 text.Foreground = Brushes.White;
                 ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
 
-                statusBox.ScrollToEnd();
+    
                 toggleControls();                
             });
         }
@@ -73,22 +74,7 @@ namespace Procurement.ViewModel
         {
             Run text = new Run();
 
-            text.Foreground = Brushes.White;
-            text.Text = "[";
-            ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
-
-            text = new Run();
-            text.Foreground = colour;
-            text.Text = message;
-            ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
-
-            text = new Run();
-            text.Foreground = Brushes.White;
-            text.Text = "]";
-
-            ((Paragraph)statusBox.Document.Blocks.LastBlock).Inlines.Add(text);
-
-            statusBox.ScrollToEnd();
+          
         }
 
         private string getPaddedString(string text)

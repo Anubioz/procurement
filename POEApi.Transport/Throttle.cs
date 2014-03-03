@@ -45,9 +45,9 @@ namespace POEApi.Transport
 
         private RequestThrottle()
         {
-            ThrottleWindowTime = new TimeSpan(0, 0, 1, 0);
-            ThrottleWindowCount = 15;
-            MaxPendingRequests = 15;
+            ThrottleWindowTime = new TimeSpan(0, 0, 0, 30);
+            ThrottleWindowCount = 20;
+            MaxPendingRequests = 20;
         }
 
         public static RequestThrottle Instance
@@ -127,7 +127,7 @@ namespace POEApi.Transport
                     using (var throttleGate = new AutoResetEvent(false))
                     {
                         Debug.WriteLine("Max number requests reached, waiting");
-                        throttleGate.WaitOne(100);
+                        throttleGate.WaitOne(25);
                     }
                 }
 

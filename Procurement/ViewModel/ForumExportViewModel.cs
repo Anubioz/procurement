@@ -141,10 +141,6 @@ namespace Procurement.ViewModel
 
          public void fullupdate(int key, bool isChecked)
         {
-            if (isChecked)
-                selected.Add(key);
-            else
-                selected.Remove(key);
 
             Text = getFinal(selected.SelectMany(sid => ApplicationState.Stash[ApplicationState.CurrentLeague].GetItemsByTab(sid))
                                                               .OrderBy(id => id.Y).ThenBy(i => i.X));

@@ -33,9 +33,6 @@ namespace POEApi.Model
 
         public void RefreshTab(POEModel currentModel, string currentLeague, int tabId)
         {
-            string inventId = ProxyMapper.STASH + (tabId + 1).ToString();
-            items.RemoveAll(i => i.inventoryId == inventId); 
-            Add(currentModel.GetStash(tabId, currentLeague, true));
         }
 
         public List<Item> GetItemsByTab(int tabId)

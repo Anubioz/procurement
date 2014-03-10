@@ -11,7 +11,7 @@ namespace Procurement
 {
     public static class ApplicationState
     {
-        public static string Version = "Procurement 1.2.0 - garena mod";
+        public static string Version = "Procurement 1.2.0 - vaal orb fix";
         public static POEModel Model = new POEModel();
         public static Dictionary<string, Stash> Stash = new Dictionary<string, Stash>();
         public static Dictionary<string, Item> Inventory = new Dictionary<string, Item>();

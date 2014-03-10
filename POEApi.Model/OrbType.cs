@@ -3,6 +3,7 @@
     public enum OrbType
     {
         Eternal,
+        VaalOrb,
         Imprint,
         Exalted,
         Divine,

@@ -35,6 +35,7 @@
             <ComboBoxItem Content="Orb of Fusing" />
             <ComboBoxItem Content="Orb of Alchemy" />
             <ComboBoxItem Content="Orb of Alteration" />
+            <ComboBoxItem Content="Vaal Orb" />
             <ComboBoxItem Content="Gemcutter's Prism" />
             <ComboBoxItem Content="Orb of Chance" />
             <ComboBoxItem Content="Cartographer's Chisel" />

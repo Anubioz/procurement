@@ -67,6 +67,7 @@ namespace POEApi.Infrastructure
             addItem("Orb of Scouring", "scour");
             addItem("Blessed Orb", "blessed");
             addItem("Chaos Orb", "chaos");
+            addItem("Vaal Orb", "vaal");
             addItem("Orb of Regret", "regret");
             addItem("Regal Orb", "regal");
             addItem("Gemcutter's Prism", "gcp");

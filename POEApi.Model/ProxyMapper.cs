@@ -29,6 +29,7 @@ namespace POEApi.Model
             { "Cartographer", OrbType.Chisel },
             { "Gemcutter's Prism", OrbType.GemCutterPrism },
             { "Alteration", OrbType.Alteration },
+            { "Vaal Orb", OrbType.VaalOrb },
             { "Chance", OrbType.Chance },
             { "Regret", OrbType.Regret },
             { "Exalted", OrbType.Exalted },

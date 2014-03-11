@@ -29,7 +29,6 @@ namespace POEApi.Model
             { "Cartographer", OrbType.Chisel },
             { "Gemcutter's Prism", OrbType.GemCutterPrism },
             { "Alteration", OrbType.Alteration },
-            { "Vaal Orb", OrbType.VaalOrb },
             { "Chance", OrbType.Chance },
             { "Regret", OrbType.Regret },
             { "Exalted", OrbType.Exalted },
@@ -44,7 +43,8 @@ namespace POEApi.Model
             { "Albino Rhoa Feather", OrbType.AlbinaRhoaFeather},
             { "Mirror", OrbType.Mirror },
             { "Eternal Orb", OrbType.Eternal},
-            { "Imprint", OrbType.Imprint }            
+            { "Imprint", OrbType.Imprint },
+            { "Vaal Orb", OrbType.VaalOrb }
         };
         #endregion
 

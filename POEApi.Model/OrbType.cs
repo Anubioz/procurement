@@ -2,8 +2,7 @@
 {
     public enum OrbType
     {
-        Eternal,
-        VaalOrb,
+        Eternal,        
         Imprint,
         Exalted,
         Divine,
@@ -31,6 +30,7 @@
         ScrollofWisdom,
         AlbinaRhoaFeather,
         AlchemyShard,
-        Mirror
+        Mirror,
+        VaalOrb
     }
 }

@@ -40,6 +40,7 @@ namespace POEApi.Model
         public bool IsQuality { get; private set; }
         public int Quality { get; private set; }
         public int UniqueIDHash { get; set; }
+        public bool Corrupted { get; private set; }
 
         protected Item(JSONProxy.Item item)
         {
@@ -68,6 +69,7 @@ namespace POEApi.Model
                     this.Quality = ProxyMapper.GetQuality(item.Properties);
                 }
             }
+            this.Corrupted = item.Corrupted;
         }
 
         protected abstract int getConcreteHash();

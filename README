@@ -5,5 +5,10 @@ Removed everything that slowed the program down
 Time from launch to found item in 200+ tabs: <30s 
 (need to start in offline mode for that)
 
-Windows binaries of procurement-mod: http://stat.tvaals.net/trade/procurement.7z
-(Version 1.2.0 from 10.03.2014 - vaal orb fixes)
+Latest changes log:
+
+Mar 11, 2014: Merged changes from r199 (https://code.google.com/p/procurement/source/list)
+Mar 10, 2014: Fixed Vaal Orbs
+Mar 03, 2014: Initial Release
+
+Windows binaries of procurement-mod are available at http://stat.tvaals.net/procurement.html

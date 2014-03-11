@@ -126,6 +126,9 @@ namespace POEApi.Model.JSONProxy
 
         [DataMember(Name = "colour")]
         public string Color { get; set; }
+
+        [DataMember(Name = "corrupted")]
+        public bool Corrupted { get; set; }
     }
 
     [DataContract]

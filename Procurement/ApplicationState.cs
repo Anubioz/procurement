@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using POEApi.Model;
-using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using System;
 
@@ -11,7 +9,7 @@ namespace Procurement
 {
     public static class ApplicationState
     {
-        public static string Version = "Procurement 1.2.0 - vaal orb fix";
+        public static string Version = "Procurement-mod 1.3.0-11.03.2014 (vanilla changes up to r199 merged) - ";
         public static POEModel Model = new POEModel();
         public static Dictionary<string, Stash> Stash = new Dictionary<string, Stash>();
         public static Dictionary<string, Item> Inventory = new Dictionary<string, Item>();

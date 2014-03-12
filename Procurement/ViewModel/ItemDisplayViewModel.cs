@@ -57,7 +57,7 @@ namespace Procurement.ViewModel
             popup.PlacementTarget = img;
             img.Stretch = Stretch.None;
             img.MouseEnter += (o, e) => { popup.IsOpen = true; };
-            img.MouseLeave += (o, e) => { popup.IsOpen = false; };
+            img.MouseLeave += (o, e) => { popup.IsOpen = false; img = null; GC.Collect(); };
             return img;
         }
 
@@ -172,7 +172,8 @@ namespace Procurement.ViewModel
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.Freeze();
             img.Source = bitmap;
-
+            bitmap = null;
+     
             return img;
         }
 
@@ -232,7 +233,7 @@ namespace Procurement.ViewModel
             popup.Child = itemhover;
             popup.PlacementTarget = img;
             img.MouseEnter += (o, e) => { popup.IsOpen = true; };
-            img.MouseLeave += (o, e) => { popup.IsOpen = false; };
+            img.MouseLeave += (o, e) => { popup.IsOpen = false; img = null; GC.Collect(); };
 
             return img;
         }

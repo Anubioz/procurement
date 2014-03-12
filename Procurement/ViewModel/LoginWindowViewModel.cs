@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -81,10 +82,61 @@ namespace Procurement.ViewModel
                 this.view.txtPassword.Password = string.Empty.PadLeft(8); //For the visuals
 
             this.view.txtPassword.PasswordChanged += new System.Windows.RoutedEventHandler(txtPassword_PasswordChanged);
+ 
+
+
 
             statusController = new StatusController(this.view.StatusBox);
-            statusController.DisplayMessage(ApplicationState.Version + " Initialized.\r");
+            statusController.DisplayMessage(ApplicationState.Version + " - checking for updates...\r");
+            int latestversion;
+            WebRequest LatestVesionRequest;
+            LatestVesionRequest = WebRequest.Create("http://raw.github.com/Anubioz/procurement/master/VERSION");
 
+            Stream objStream;
+            objStream = LatestVesionRequest.GetResponse().GetResponseStream();
+
+            StreamReader objReader = new StreamReader(objStream);
+
+            string LatestVersionString = "";
+            int i = 0;
+            bool updateAvailable = false;
+            while (LatestVersionString != null)
+            {
+                i++;
+                LatestVersionString = objReader.ReadLine();
+
+                if (LatestVersionString != null)
+                {
+                    latestversion = Convert.ToInt32(LatestVersionString);
+                    if (latestversion > 13001) updateAvailable = true;
+                }
+            }
+
+            if (updateAvailable)
+            {
+                statusController.DisplayMessage("Updated version is available!\r");
+
+                WebRequest ChangeLogRequest;
+                ChangeLogRequest = WebRequest.Create("http://raw.github.com/Anubioz/procurement/master/LATEST");
+
+                objStream = ChangeLogRequest.GetResponse().GetResponseStream();
+                objReader = new StreamReader(objStream);
+                string ChangeLogString = "";
+                i = 0;
+
+                while (ChangeLogString != null)
+                {
+                    i++;
+                    ChangeLogString = objReader.ReadLine();
+
+                    if (ChangeLogString != null) statusController.DisplayMessage(ChangeLogString);
+
+                }
+            }
+            else
+            {
+                statusController.DisplayMessage("Your version is up to date!\r");
+            }
             ApplicationState.Model.Authenticating += new POEModel.AuthenticateEventHandler(model_Authenticating);
             ApplicationState.Model.StashLoading += new POEModel.StashLoadEventHandler(model_StashLoading);
             ApplicationState.Model.ImageLoading += new POEModel.ImageLoadEventHandler(model_ImageLoading);

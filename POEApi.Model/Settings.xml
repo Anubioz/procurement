@@ -69,8 +69,8 @@
     <Setting name="Domain" value="" />
   </ProxySettings>
   <ConnectionSettings>
-    <Setting name="ConcurrentThreads" value="20" />
-    <Setting name="ThrottleInterval" value="30" />
+    <Setting name="ConcurrentThreads" value="36" />
+    <Setting name="ThrottleInterval" value="36" />
   </ConnectionSettings>
   <Lists>
     <List name="MyLeagues">

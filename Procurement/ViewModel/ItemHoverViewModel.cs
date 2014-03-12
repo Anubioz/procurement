@@ -22,6 +22,7 @@ namespace Procurement.ViewModel
         public bool HasImplicitMods { get { return ImplicitMods != null && ImplicitMods.Count > 0; } }
         public string DescriptionText { get; private set; }
         public string SecondaryDescriptionText { get; private set; }
+        public bool IsCorrupted { get; private set; }
         
         public ItemHoverViewModel(Item item)
         {
@@ -36,7 +37,8 @@ namespace Procurement.ViewModel
             this.ExplicitMods = item.Explicitmods;
             this.ImplicitMods = new List<string>();
             this.DescriptionText = item.DescrText;
-            
+            this.IsCorrupted = item.Corrupted;
+
             SecondaryDescriptionText = item.SecDescrText;
 
             var gear = item as Gear;

@@ -196,6 +196,20 @@
                                Visibility="{Binding DescriptionText,
                                                     Converter={StaticResource VisibilityConverter},
                                                     ConverterParameter=CollapseWhenFalse}" />
+
+                    <TextBlock Width="{Binding Path=ActualWidth,
+                                               ElementName=ItemHeader,
+                                               Mode=OneWay}"
+                               HorizontalAlignment="Center"
+                               FontFamily="../Resources/#Fontin SmallCaps"
+                               Foreground="#960003"
+                               Padding="10 0 10 5"
+                               Text="Corrupted"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding IsCorrupted,
+                               Converter={StaticResource bc},
+                               ConverterParameter=CollapseWhenFalse}" />
                 </StackPanel>
             </Border>
         </DockPanel>

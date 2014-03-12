@@ -21,7 +21,7 @@ namespace POEApi.Model
         static Settings()
         {
             originalDoc = XElement.Load(location);
-            CurrencyRatios = originalDoc.Elements("Ratios").Descendants().ToDictionary(orb => orb.Attribute("type").GetEnum<OrbType>(), orb => new CurrencyRatio(orb.Attribute("type").GetEnum<OrbType>(), getOrbAmount(orb), getGCPAmount(orb)));
+            CurrencyRatios = originalDoc.Elements("Ratios").Descendants().ToDictionary(orb => orb.Attribute("type").GetEnum<OrbType>(), orb => new CurrencyRatio(orb.Attribute("type").GetEnum<OrbType>(), getOrbAmount(orb), getChaosAmount(orb)));
 
             UserSettings = getStandardNameValue("UserSettings");
             ProxySettings = getStandardNameValue("ProxySettings");
@@ -48,9 +48,9 @@ namespace POEApi.Model
                 PopularGems = originalDoc.Element("PopularGems").Elements("Gem").Select(e => e.Attribute("name").Value).ToList();
         }
 
-        private static double getGCPAmount(XElement orb)
+        private static double getChaosAmount(XElement orb)
         {
-            return double.Parse(orb.Attribute("gcpamount").Value, CultureInfo.InvariantCulture);
+            return double.Parse(orb.Attribute("chaosamount").Value, CultureInfo.InvariantCulture);
         }
 
         private static double getOrbAmount(XElement orb)
@@ -76,7 +76,7 @@ namespace POEApi.Model
             {
                 XElement update = originalDoc.Elements("Ratios").Descendants().First(x => x.Attribute("type").Value == key.ToString());
                 update.Attribute("orbamount").SetValue(CurrencyRatios[key].OrbAmount.ToString());
-                update.Attribute("gcpamount").SetValue(CurrencyRatios[key].GCPAmount.ToString());
+                update.Attribute("chaosamount").SetValue(CurrencyRatios[key].ChaosAmount.ToString());
             }
 
             originalDoc.Element("Buyouts").RemoveNodes();

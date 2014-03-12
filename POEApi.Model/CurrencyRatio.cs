@@ -4,13 +4,13 @@
     {
         public OrbType OrbType { get; set; }
         public double OrbAmount { get; set; }
-        public double GCPAmount { get; set; }
+        public double ChaosAmount { get; set; }
 
-        public CurrencyRatio(OrbType orbType, double OrbAmount, double GCPAmount)
+        public CurrencyRatio(OrbType orbType, double OrbAmount, double ChaosAmount)
         {
             this.OrbType = orbType;
             this.OrbAmount = OrbAmount;
-            this.GCPAmount = GCPAmount;
+            this.ChaosAmount = ChaosAmount;
         }
     }
 }

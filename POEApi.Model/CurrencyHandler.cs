@@ -5,17 +5,17 @@ namespace POEApi.Model
 {
     internal class CurrencyHandler
     {
-        internal static double GetGCPValue(OrbType type)
+        internal static double GetChaosValue(OrbType type)
         {
             if (!Settings.CurrencyRatios.ContainsKey(type))
                 return 0;
 
             CurrencyRatio ratio = Settings.CurrencyRatios[type];
 
-            if (ratio.GCPAmount < ratio.OrbAmount)
-                return ratio.GCPAmount / ratio.OrbAmount;
+            if (ratio.ChaosAmount < ratio.OrbAmount)
+                return ratio.ChaosAmount / ratio.OrbAmount;
 
-            return ratio.OrbAmount * ratio.GCPAmount;
+            return ratio.OrbAmount * ratio.ChaosAmount;
         }
 
         public static double GetTotal(OrbType target, IEnumerable<Currency> currency)
@@ -23,11 +23,11 @@ namespace POEApi.Model
             double total = 0;
 
             foreach (var orb in currency)
-                total += orb.StackInfo.Amount * orb.GCPValue;
+                total += orb.StackInfo.Amount * orb.ChaosValue;
 
-            var ratioToGCP = Settings.CurrencyRatios[target];
+            var ratioToChaos = Settings.CurrencyRatios[target];
 
-            total *= (ratioToGCP.OrbAmount / ratioToGCP.GCPAmount);
+            total *= (ratioToChaos.ChaosAmount / ratioToChaos.ChaosAmount);
 
             return total;
         }

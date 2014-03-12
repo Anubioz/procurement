@@ -1,25 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Settings>
   <Ratios>
-    <Orb type="Mirror" orbamount="1" gcpamount="450"/>
-    <Orb type="Eternal" orbamount="1" gcpamount="30"/>
-    <Orb type="Imprint" orbamount="1" gcpamount="0"/>
-    <Orb type="Exalted" orbamount="1" gcpamount="15"/>
-    <Orb type="Divine" orbamount="1" gcpamount="3"/>
-    <Orb type="GemCutterPrism" orbamount="1" gcpamount="1"/>
-    <Orb type="Chisel" orbamount="8" gcpamount="1"/>
-    <Orb type="Regal" orbamount="3" gcpamount="1"/>
-    <Orb type="Chaos" orbamount="4" gcpamount="1"/>
-    <Orb type="Regret" orbamount="3" gcpamount="1"/>
-    <Orb type="Blessed" orbamount="16" gcpamount="1"/>
-    <Orb type="Scouring" orbamount="16" gcpamount="1"/>
-    <Orb type="Fusing" orbamount="8" gcpamount="1"/>
-    <Orb type="Alchemy" orbamount="8" gcpamount="1"/>
-    <Orb type="AlchemyShard" orbamount="160" gcpamount="1"/>
-    <Orb type="Chance" orbamount="64" gcpamount="1"/>
-    <Orb type="JewelersOrb" orbamount="32" gcpamount="1"/>
-    <Orb type="Alteration" orbamount="64" gcpamount="1"/>
-    <Orb type="Chromatic" orbamount="60" gcpamount="1"/>
+    <Orb type="Mirror" orbamount="1" chaosamount="450" />
+    <Orb type="Eternal" orbamount="1" chaosamount="50" />
+    <Orb type="Imprint" orbamount="1" chaosamount="0" />
+    <Orb type="Exalted" orbamount="1" chaosamount="20" />
+    <Orb type="Divine" orbamount="1" chaosamount="8" />
+    <Orb type="GemCutterPrism" orbamount="1" chaosamount="2" />
+    <Orb type="Regal" orbamount="1" chaosamount="2" />
+    <Orb type="Chaos" orbamount="1" chaosamount="1" />
+    <Orb type="VaalOrb" orbamount="1" chaosamount="1" />
+    <Orb type="Regret" orbamount="1" chaosamount="1" />
+    <Orb type="Blessed" orbamount="2" chaosamount="1" />
+    <Orb type="Scouring" orbamount="2.5" chaosamount="1" />
+    <Orb type="Fusing" orbamount="2.5" chaosamount="1" />
+    <Orb type="Alchemy" orbamount="2.5" chaosamount="1" />
+    <Orb type="Chisel" orbamount="2.5" chaosamount="1" />
+    <Orb type="AlchemyShard" orbamount="40" chaosamount="1" />
+    <Orb type="Chance" orbamount="8" chaosamount="1" />
+    <Orb type="JewelersOrb" orbamount="10" chaosamount="1" />
+    <Orb type="Alteration" orbamount="20" chaosamount="1" />
+    <Orb type="Chromatic" orbamount="20" chaosamount="1" />
+    <Orb type="Transmutation" orbamount="60" chaosamount="1" />
+    <Orb type="ArmourersScrap" orbamount="80" chaosamount="1" />
+    <Orb type="BlacksmithsWhetstone" orbamount="40" chaosamount="1" />
   </Ratios>
   <PopularGems>
     <Gem name="Cast when Damage Taken" />

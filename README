@@ -7,6 +7,7 @@ Time from launch to found item in 200+ tabs: <30s
 
 Latest changes log:
 
+Mar 12, 2014: Total currency now is displayed in chaos orbs - change ratios from default in Settings.xml (using Invasion ratios as default)
 Mar 12, 2014: Greatly improved memory consumption by killing leaks + loading speed improvement
 Mar 11, 2014: Merged changes from r199 (https://code.google.com/p/procurement/source/list)
 Mar 10, 2014: Fixed Vaal Orbs

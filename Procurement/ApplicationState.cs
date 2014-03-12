@@ -9,7 +9,7 @@ namespace Procurement
 {
     public static class ApplicationState
     {
-        public static string Version = "Procurement-mod 1.3.0-12.03.2014 (memory handling improvement) - ";
+        public static string Version = "Procurement-mod 1.3.0-12.03.2014 (latest change: total currency displayed in chaos) -";
         public static POEModel Model = new POEModel();
         public static Dictionary<string, Stash> Stash = new Dictionary<string, Stash>();
         public static Dictionary<string, Item> Inventory = new Dictionary<string, Item>();

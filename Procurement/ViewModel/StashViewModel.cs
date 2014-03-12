@@ -132,9 +132,8 @@ namespace Procurement.ViewModel
             ApplicationState.LeagueChanged += new PropertyChangedEventHandler(ApplicationState_LeagueChanged);
             stashView.tabControl.SelectionChanged += new SelectionChangedEventHandler(tabControl_SelectionChanged);
             getAvailableItems();
-            expressionDark = Application.LoadComponent(new Uri("/Procurement;component/Controls/ExpressionDark.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
-
-            configuredOrbType = OrbType.GemCutterPrism;
+          
+            configuredOrbType = OrbType.Chaos;
             string currencyDistributionMetric = Settings.UserSettings["CurrencyDistributionMetric"];
             if (currencyDistributionMetric.ToLower() == "count")
                 currencyDistributionUsesCount = true;

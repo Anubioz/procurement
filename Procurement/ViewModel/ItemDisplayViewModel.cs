@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -51,16 +52,26 @@ namespace Procurement.ViewModel
 
             Popup popup = new Popup();
             popup.AllowsTransparency = true;
-            popup.PopupAnimation = PopupAnimation.Fade;
+            popup.PopupAnimation = PopupAnimation.None;
             popup.StaysOpen = true;
             popup.Child = itemhover;
             popup.PlacementTarget = img;
             img.Stretch = Stretch.None;
             img.MouseEnter += (o, e) => { popup.IsOpen = true; };
-            img.MouseLeave += (o, e) => { popup.IsOpen = false; img = null; GC.Collect(); };
+            img.MouseLeave += (o, e) => { btns_MouseLeave(popup, e); img = null; GC.Collect(); };
             return img;
         }
 
+
+        private void btns_MouseLeave(object ourpopup,  MouseEventArgs e)
+        {
+            var popup = ourpopup as Popup;
+            popup.IsOpen = false;
+        }
+        private void btns_MouseEnter(object sender, MouseEventArgs e)
+        {
+         
+        }
         public UIElement getSocket()
         {
             Gear gear = Item as Gear;
@@ -164,16 +175,14 @@ namespace Procurement.ViewModel
 
             }
 
-            img.SetValue(Panel.ZIndexProperty, 1);
-
             var bitmap = new BitmapImage(new Uri(string.Format(linkFormat, link), UriKind.Absolute));
 
             img.Stretch = System.Windows.Media.Stretch.None;
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.Freeze();
             img.Source = bitmap;
+            img.Focusable = false;
             bitmap = null;
-     
             return img;
         }
 
@@ -212,12 +221,14 @@ namespace Procurement.ViewModel
 
             Image img = new Image();
 
+            img.SetValue(Panel.ZIndexProperty, 1);
+        
             var bitmap = new BitmapImage(new Uri(string.Format(socketFormat, color), UriKind.Absolute));
             img.Stretch = System.Windows.Media.Stretch.None;
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
             bitmap.Freeze();
             img.Source = bitmap;
-
+   
             return img;
         }
 
@@ -228,13 +239,12 @@ namespace Procurement.ViewModel
             var itemhover = new ItemHover() { DataContext = ItemHoverViewModelFactory.Create(item)};
 
             Popup popup = new Popup();
-            popup.PopupAnimation = PopupAnimation.Fade;
+            popup.PopupAnimation = PopupAnimation.None;
             popup.StaysOpen = true;
             popup.Child = itemhover;
             popup.PlacementTarget = img;
             img.MouseEnter += (o, e) => { popup.IsOpen = true; };
             img.MouseLeave += (o, e) => { popup.IsOpen = false; img = null; GC.Collect(); };
-
             return img;
         }
 

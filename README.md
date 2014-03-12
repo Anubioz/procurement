@@ -23,4 +23,4 @@ Fork of the [official Procurement](https://code.google.com/p/procurement/)
     Mar 10, 2014: Fixed Vaal Orbs
     Mar 03, 2014: Initial Release
 
-#### Complied windows binaries of procurement-mod are available [here](http://stat.tvaals.net/procurement.html) or [mirrored on github](https://github.com/Anubioz/procurement/raw/master/WindowsBinaries/procurement-mod-binaries-1.3.0.01.zip)
+#### [Download procurement-mod binaries for Windows](https://github.com/Anubioz/procurement/raw/master/WindowsBinaries/procurement-mod-binaries-1.3.0.01.zip)

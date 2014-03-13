@@ -1,0 +1,16 @@
+You are running the latest version of Procurement-mod (updated March 13, 2014)
+
+Changelog:
+
+1.3.0.02: Added the option EnableBuyOuts to Settings.xml. It allows to set item buy out prices by right-clicking. Disabled by default.
+1.3.0.01: First version with update check feature
+
+Help:
+
+Setting buyouts feature slows down the tab switching and is disabled by default.
+To enable it - change the following line in Settings.xml:
+<Setting name="EnableBuyOuts" value="False" />
+To
+<Setting name="EnableBuyOuts" value="True" />
+
+And don't rip :)

@@ -34,7 +34,6 @@ namespace Procurement.ViewModel
         private StashView stashView;
         private List<IFilter> categoryFilter;
         private TabItem selectedTab { get; set; }
-        private ResourceDictionary expressionDark;
         private OrbType configuredOrbType;
         private bool currencyDistributionUsesCount;
         private string filter;
@@ -202,7 +201,7 @@ namespace Procurement.ViewModel
         {
             ContextMenu menu = new ContextMenu();
             menu.PlacementTarget = target;
-            menu.Resources = expressionDark;
+
 
             foreach (TabItem item in tabControl.Items)
             {

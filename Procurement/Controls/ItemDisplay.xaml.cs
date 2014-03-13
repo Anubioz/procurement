@@ -17,6 +17,9 @@ namespace Procurement.Controls
     {
         private static List<Popup> annoyed = new List<Popup>();
 
+        private TextBlock textblock;
+        string EnableBuyOuts = Settings.UserSettings["EnableBuyOuts"];
+
         public ItemDisplay()
         {
             InitializeComponent();
@@ -41,12 +44,85 @@ namespace Procurement.Controls
             if (socket != null)
                 doSocketOnHover(socket, i);
 
+            if (EnableBuyOuts == bool.TrueString)
+            {
+                i.ContextMenu = getContextMenu();
+            }
             this.Height = i.Height;
             this.Width = i.Width;
            
             this.Loaded -= new RoutedEventHandler(ItemDisplay_Loaded);
+            if (EnableBuyOuts == bool.TrueString)
+            {
+                resyncText();
+            }
+        }
+
+        private void resyncText()
+        {
+            if (EnableBuyOuts == bool.TrueString)
+            {
+                ItemDisplayViewModel vm = this.DataContext as ItemDisplayViewModel;
+
+                Item item = vm.Item;
+
+                if (item is Currency)
+                    return;
+
+                MenuItem setBuyout = new MenuItem();
+
+                string buyoutValue = string.Empty;
+
+                if (Settings.Buyouts.ContainsKey(item.UniqueIDHash))
+                    buyoutValue = Settings.Buyouts[item.UniqueIDHash];
+
+                if (textblock != null)
+                    this.MainGrid.Children.Remove(textblock);
+
+                textblock = new TextBlock();
+                textblock.Text = buyoutValue;
+
+                textblock.IsHitTestVisible = false;
+                textblock.Margin = new Thickness(1, 1, 0, 0);
+                this.MainGrid.Children.Add(textblock);
+            }
+        }
+
+        private ContextMenu getContextMenu()
+        {
+  
+                ItemDisplayViewModel vm = this.DataContext as ItemDisplayViewModel;
+
+                Item item = vm.Item;
+
+                ContextMenu menu = new ContextMenu();
+
+                menu.Background = Brushes.Black;
+
+                if (!(item is Currency))
+                {
+                    MenuItem setBuyout = new MenuItem();
+
+                    var buyoutControl = new SetBuyoutView();
+
+                    if (Settings.Buyouts.ContainsKey(item.UniqueIDHash))
+                    {
+                        var price = Settings.Buyouts[item.UniqueIDHash].Split(' ');
+                        buyoutControl.SetValue(price[0], CurrencyAbbreviationMap.Instance.FromAbbreviation(price[1]));
+                    }
+
+                    setBuyout.Header = buyoutControl;
+
+                    buyoutControl.SaveClicked += new SetBuyoutView.BuyoutHandler(buyoutView_SaveClicked);
+                    buyoutControl.RemoveClicked += new SetBuyoutView.BuyoutHandler(buyoutControl_RemoveClicked);
+
+                    menu.Items.Add(setBuyout);
+                }
+
+                return menu;
 
         }
+
 
 
         private void doSocketAlwaysOver(UIElement socket)
@@ -57,7 +133,7 @@ namespace Procurement.Controls
         private void doSocketOnHover(UIElement socket, Image i)
         {
             NonTopMostPopup popup = new NonTopMostPopup();
-            popup.PopupAnimation = PopupAnimation.Fade;
+            popup.PopupAnimation = PopupAnimation.None;
             popup.StaysOpen = true;
             popup.Child = socket;
             popup.Placement = PlacementMode.Center;
@@ -83,15 +159,34 @@ namespace Procurement.Controls
 
         void buyoutControl_RemoveClicked(string amount, string orbType)
         {
-            
+            if (EnableBuyOuts == bool.TrueString)
+            {
+                ItemDisplayViewModel vm = this.DataContext as ItemDisplayViewModel;
+                Item item = vm.Item;
+                Settings.Buyouts.Remove(item.UniqueIDHash);
+                Settings.Save();
+                resyncText();
+            }
         }
 
         void buyoutView_SaveClicked(string amount, string orbType)
         {
-           
+            if (EnableBuyOuts == bool.TrueString)
+            {
+                var abbreviation = CurrencyAbbreviationMap.Instance.FromCurrency(orbType);
+                ItemDisplayViewModel vm = this.DataContext as ItemDisplayViewModel;
+                Item item = vm.Item;
+                Settings.Buyouts[item.UniqueIDHash] = string.Format("{0} {1}", amount, abbreviation);
+                Settings.Save();
+                resyncText();
+            }
         }
 
         public static void closeOthersButNot(Popup current)
-        {       }
+        {
+                List<Popup> others = annoyed.Where(p => p.IsOpen && !object.ReferenceEquals(current, p)).ToList();
+                Task.Factory.StartNew(() => others.ToList().ForEach(p => p.Dispatcher.Invoke((Action)(() => { p.IsOpen = false; p = null; }))));
+    
+        }
     }
 }

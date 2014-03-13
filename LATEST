@@ -1,4 +1,4 @@
-Latest version of Procurement-mod is 1.3.0.01
+Latest version of Procurement-mod is 1.3.0.02
 (updated March 13, 2014)
 
 Please download the updated files from the official GitHub repository:
@@ -6,4 +6,5 @@ https://github.com/Anubioz/procurement
 
 Changelog:
 
+1.3.0.02: Added the option EnableBuyOuts to Settings.xml. It allows to set item buy out prices by right-clicking. Disabled by default.
 1.3.0.01: First version with update check feature

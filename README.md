@@ -32,6 +32,7 @@ Faster fork of the [official Procurement](https://code.google.com/p/procurement/
 
 ### Latest changes log:
 
+* 1.3.0.02: Added the option EnableBuyOuts to Settings.xml. It allows to set item buy out prices by right-clicking. Disabled by default.
 * 1.3.0.01: First version with update check feature
 * Mar 13, 2014: Added update check feature, which requires version numbering
 * Mar 12, 2014: Merged official tree r200 changes - added itemhover display of corrupted state
@@ -41,4 +42,4 @@ Faster fork of the [official Procurement](https://code.google.com/p/procurement/
 * Mar 10, 2014: Fixed Vaal Orbs
 * Mar 03, 2014: Initial Release
 
-#### [Download procurement-mod binaries for Windows](https://github.com/Anubioz/procurement/raw/master/WindowsBinaries/procurement-mod-binaries-1.3.0.01.zip)
+#### [Download procurement-mod binaries for Windows](https://github.com/Anubioz/procurement/raw/master/WindowsBinaries/procurement-mod-binaries-1.3.0.02.zip)

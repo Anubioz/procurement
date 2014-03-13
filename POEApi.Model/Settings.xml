@@ -61,6 +61,7 @@
     <Setting name="CurrencyDistributionMetric" value="Chaos" />
     <Setting name="EmbedBuyouts" value="True" />
     <Setting name="BuyoutItemsOnlyVisibleInBuyoutsTag" value="False" />
+    <Setting name="EnableBuyOuts" value="False" />
   </UserSettings>
   <ProxySettings>
     <Setting name="Enabled" value="False" />
@@ -69,8 +70,8 @@
     <Setting name="Domain" value="" />
   </ProxySettings>
   <ConnectionSettings>
-    <Setting name="ConcurrentThreads" value="36" />
-    <Setting name="ThrottleInterval" value="36" />
+    <Setting name="ConcurrentThreads" value="15" />
+    <Setting name="ThrottleInterval" value="30" />
   </ConnectionSettings>
   <Lists>
     <List name="MyLeagues">

@@ -108,7 +108,7 @@ namespace Procurement.ViewModel
                 if (LatestVersionString != null)
                 {
                     latestversion = Convert.ToInt32(LatestVersionString);
-                    if (latestversion > 13001) updateAvailable = true;
+                    if (latestversion > 13002) updateAvailable = true;
                 }
             }
 
@@ -136,6 +136,24 @@ namespace Procurement.ViewModel
             else
             {
                 statusController.DisplayMessage("Your version is up to date!\r");
+
+                WebRequest ChangeLogRequest;
+                ChangeLogRequest = WebRequest.Create("http://raw.github.com/Anubioz/procurement/master/UPTODATE");
+
+                objStream = ChangeLogRequest.GetResponse().GetResponseStream();
+                objReader = new StreamReader(objStream);
+                string ChangeLogString = "";
+                i = 0;
+
+                while (ChangeLogString != null)
+                {
+                    i++;
+                    ChangeLogString = objReader.ReadLine();
+
+                    if (ChangeLogString != null) statusController.DisplayMessage(ChangeLogString);
+
+                }
+
             }
             ApplicationState.Model.Authenticating += new POEModel.AuthenticateEventHandler(model_Authenticating);
             ApplicationState.Model.StashLoading += new POEModel.StashLoadEventHandler(model_StashLoading);
